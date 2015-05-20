@@ -1,6 +1,6 @@
 <?php
 
-include_once '../src/MongoMonitor.php';
+include_once __DIR__ . '/' .  '../src/MongoMonitor.php';
 
 // get monitor class
 $MongoMonitor = new MongoMonitor();

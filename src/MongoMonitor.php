@@ -36,17 +36,25 @@ class MongoMonitor
     const SYSTEM = 'system.profile';
 
     /**
+     * test databsae name
+     * @var string
+     */
+    const TEST = 'test';
+
+    /**
      * Initilize the db, collection, and filepath variables
      */
-    protected function init()
+    private function init()
     {
-        $this->db = new MongoClient();
+        $conn = new MongoClient();
+
+        $this->db = $conn->selectDB(self::TEST);
+        error_log("Connected to the " . self::TEST . " mongo database");
+
         $this->collection = $this->db->selectCollection(self::SYSTEM);
         $this->filePath = 'results/slow_queries_' . time() . '.json';
 
-        if (DEBUG) {
-            error_log("Journing to the " . self::SYSTEM . " mongo collection");
-        }
+        error_log("Journing to the " . self::SYSTEM . " mongo collection");
     }
 
     /**
