@@ -1,0 +1,36 @@
+#!/bin/bash
+
+ROOT="$(dirname "$0")/.."
+
+clear
+pushd $ROOT > /dev/null
+
+OP="$1"
+shift
+
+function usage {
+    echo "Usage: script/mongo-monitor [OP] [-h]"
+    echo
+    echo "  OP - 'start', 'stop', or 'get'. Defaults to stop which clears the system.profile collection"
+    echo "  -h - print this message and exit."
+}
+
+function start_monitor {
+    php script/start-mongo-monitor.php
+}
+
+function stop_monitor {
+    php script/stop-mongo-monitor.php
+}
+
+function get_slow_queries {
+    php script/get-slow-queries.php
+}
+
+case "$OP" in
+  -h)       usage && exit 0 ;;
+  start)    start_monitor ;;
+  get)      get_slow_queries ;;
+  stop)     stop_monitor ;;
+  all*)     stop_monitor ;;
+esac
