@@ -39,7 +39,7 @@ class MongoMonitor
      * test databsae name
      * @var string
      */
-    const TEST = 'test';
+    const DB = 'test';
 
     /**
      * Initilize the db, collection, and filepath variables
@@ -48,13 +48,12 @@ class MongoMonitor
     {
         $conn = new MongoClient();
 
-        $this->db = $conn->selectDB(self::TEST);
-        error_log("Connected to the " . self::TEST . " mongo database");
+        $this->db = $conn->selectDB(self::DB);
 
         $this->collection = $this->db->selectCollection(self::SYSTEM);
         $this->filePath = 'results/slow_queries_' . time() . '.json';
 
-        error_log("Journing to the " . self::SYSTEM . " mongo collection");
+        error_log("Connected to mongo " . self::DB . ":" . self::SYSTEM);
     }
 
     /**
@@ -109,7 +108,7 @@ class MongoMonitor
 
         // write results to file if there are results otherwise output a happy message
         if (count($results)) {
-            file_put_contents($this->filePath, json_encode($results));
+            file_put_contents($this->filePath, json_encode($results, JSON_PRETTY_PRINT));
             echo 'There are slow ' .  count($results) . ' queries to check on in ' . $this->filePath . PHP_EOL;
         } else {
             echo 'All clear, merry coding! ' . PHP_EOL;
@@ -126,6 +125,6 @@ class MongoMonitor
         $this->db->setProfilingLevel(0);
         // clear the system.profile capped collection
         $this->collection->drop();
-        error_log("Cleared historic data in " . self::SYSTEM);
+        error_log("Cleared historic data in " . self::DB . ":" . self::SYSTEM);
     }
 }
