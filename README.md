@@ -1,6 +1,6 @@
 # MongoMonitor
 
-A simple tool that helps unconver half-convered/slow mongo queries during development.
+A simple tool that helps uncover half-convered/slow mongo queries during development.
 
 ### Installation
 
