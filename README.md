@@ -5,7 +5,7 @@ A simple tool that helps uncover half-convered/slow mongo queries during develop
 ### Installation
 
 ```sh
-$ git clone [git@github.com:bigthyme/MongoMonitor.git](MongoManager)
+$ git clone git@github.com:bigthyme/MongoMonitor.git
 ```
 
 ### Usage
