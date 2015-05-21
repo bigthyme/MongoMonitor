@@ -36,7 +36,7 @@ class MongoMonitor
     const SYSTEM = 'system.profile';
 
     /**
-     * test databsae name
+     * test database name
      * @var string
      */
     const DB = 'test';
