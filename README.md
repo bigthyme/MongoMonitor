@@ -22,10 +22,6 @@ $ ./mongo-monitor get
 $ cat results/slow_queries_1432169717634.json
 ```
 
-### Development
-
-Want to contribute? Great...
-
 License
 ----
 
